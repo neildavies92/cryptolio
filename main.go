@@ -21,14 +21,14 @@ func main() {
 
 	requestMethod := "GET"
 	requestHost := "api.coinbase.com"
-	requestPath := "/v2/accounts"
+	requestPath := "/v2/accounts/"
 
-	uri := fmt.Sprintf("%s %s %s", requestMethod, requestHost, requestPath)
+	uri := fmt.Sprintf("%s %s%s", requestMethod, requestHost, requestPath)
 
 	jwt, err := jwt.BuildJWT(uri)
 
 	if jwt != "" {
-		fmt.Println("JWT Set Successfully")
+		fmt.Println("JWT set successfully")
 	} else {
 		log.Errorf("Error: Failed to build JWT: %v", err)
 	}
@@ -36,7 +36,8 @@ func main() {
 	wallet, err := wallet.GetWallet(jwt)
 
 	if wallet != nil {
-		fmt.Println(wallet)
+		fmt.Println(wallet.Status)
+
 	} else {
 		log.Errorf("Error: Failed to retrieve wallet: %v", err)
 	}
