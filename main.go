@@ -5,6 +5,7 @@ import (
 
 	"github.com/joho/godotenv"
 	"github.com/neildavies92/cryptolio/jwt"
+	"github.com/neildavies92/cryptolio/wallet"
 	log "github.com/sirupsen/logrus"
 )
 
@@ -29,6 +30,14 @@ func main() {
 	if jwt != "" {
 		fmt.Println("JWT Set Successfully")
 	} else {
-		log.Errorf("Error: Failed to build jwt: %v", err)
+		log.Errorf("Error: Failed to build JWT: %v", err)
+	}
+
+	wallet, err := wallet.GetWallet(jwt)
+
+	if wallet != nil {
+		fmt.Println(wallet)
+	} else {
+		log.Errorf("Error: Failed to retrieve wallet: %v", err)
 	}
 }
