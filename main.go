@@ -37,7 +37,7 @@ func main() {
 
 	if wallet != nil {
 		fmt.Println(wallet.Status)
-
+		fmt.Println(wallet.Body)
 	} else {
 		log.Errorf("Error: Failed to retrieve wallet: %v", err)
 	}
